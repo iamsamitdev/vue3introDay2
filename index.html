@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 3 Introduction</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <!-- Import Vue.js -->
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    
+    <div id="app">
+
+        <div class="cart">{{ cart }}</div>
+
+        <div class="product-display">
+
+            <div class="product-container">
+        
+                <div class="product-image">
+                    <!-- <img v-bind:src="image" 
+                    v-bind:alt="description" 
+                    v-bind:title="description"> -->
+                    
+                    <img :src="image" :alt="description" :title="description">
+                </div>
+                
+                <div class="product-info">
+
+                    <!-- <h1>{{ product }}</h1> -->
+                    <h1>{{ title }}</h1>
+                    <p>{{ description }}</p>
+                    <!-- <p v-if="inStock">In Stock</p>
+                    <p v-else>Out of Stock</p> -->
+
+                    <!-- <p v-show="inStock">In Stock</p> -->
+
+                    <p v-if="inventory > 10">In Stock</p>
+                    <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
+                    <p v-else>Out of Stock</p>
+
+                    <ul>
+                        <li v-for="detail in details">{{ detail }}</li>
+                    </ul>
+
+                    <div v-for="(variant, index) in variants" 
+                        :key="variant.id"
+                        @mouseover="updateImage(variant.image)"
+                        class="color-circle"
+                        :style="{backgroundColor:variant.color}"
+                    >
+                        <!-- {{ index+1 }} {{ variant.color }} -->
+                    </div>
+
+                    <div>
+                        <!-- <button v-on:click="addToCart">Add to Cart</button> -->
+                        <button 
+                            class="button" 
+                            :class="{disabledButton: inventory <= 0}"
+                            :disabled="inventory <= 0"
+                            @click="addToCart">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <!-- <a v-bind:href="url">Made by Apple California</a> -->
+                    <a :href="url">Made by Apple California</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Import Js -->
+    <script src="./main.js"></script>
+
+</body>
+</html>
